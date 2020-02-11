@@ -2,7 +2,7 @@
     "name": "jexia-vsc-snippets",
     "displayName": "Jexia Snippet for Visual Studio Code",
     "description": "Set of snippets for fast start with Jexia",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "author": "Jexia",
     "license": "MIT",
     "repository": {
