@@ -1,0 +1,37 @@
+{
+    "name": "jexia-vsc-snippet",
+    "displayName": "Jexia Snippet for Visual Studio Code",
+    "description": "Set of snippets for fast start with Jexia",
+    "version": "0.0.1",
+    "author": "Jexia",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jexia/vs-code-snippets.git"
+	},
+	"bugs": {
+		"url": "https://github.com/jexia/vs-code-snippets/issues"
+	},
+    "icon": "images/jexia.png",
+    "publisher": "jexia",
+    "keywords": [
+        "jexia",
+        "snippets",
+        "javascript",
+        "visual studio"
+    ],
+    "engines": {
+        "vscode": "^1.19.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "javascript",
+                "path": "./snippets/jexia-javascript.json"
+            }
+        ]
+    }
+}

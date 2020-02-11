@@ -1,0 +1,177 @@
+{
+	"Jexia Init": {
+		"prefix": ".jx_init",
+		"body": [
+		  "import * as Jexia from \"jexia-sdk-js\"",
+		  "const ${1:var}= Jexia.${2|dataOperations,fileOperations,UMSModule,field,realTime|}()",
+		  "",
+		  "Jexia.init({",
+		  "  projectID: \"${3:project_id}\",",
+		  "  key: \"${4:api_key}\",",
+		  "  secret: \"${5:api_secret}\",",
+		  "},${1:var});",
+		  "",
+		  ""
+		],
+		"description": "Initiate Jexia with API-KEY"
+	  },
+	"Jexia UMS Init": {
+		"prefix": ".jx_ums_init",
+		"body": [
+		  "import * as Jexia from \"jexia-sdk-js\"",
+		  "const ${1:var}= Jexia.UMSModule()",
+		  "",
+		  "Jexia.init({",
+		  "  projectID: \"${3:project_id}\",",
+		  "},${1:var});",
+		  "",
+		  ""
+		],
+		"description": "Initiate Jexia with UserSet"
+	  },
+	"Jexia DataSet": {
+		"prefix": ".jx_ds",
+		"body": [
+		  ".dataset(\"${1:DataSetName}\").${2|select,insert,update,delete|}()",
+		  "\t$3",
+		  "\t.pipe(",
+		  "\t\t// any RxJS method.",
+		  "\t\t//switchMap(records => archive.insert(records)), ",
+		  "\t)",	
+		  "\t.subscribe(records => {", 
+		  "\t\t// you will always get an array of created records, including their generated IDs (even when inserting a single record) ",
+		  "\t},", 
+		  "\terror => {", 
+		  "\t\t// you can see the error info here, if something goes wrong ",
+	      "\t});"
+		],
+		"description": "Jexia DataSet CRUD"
+	  },
+	"Jexia Where": {
+		"prefix": ".jx_where",
+		"body": [
+		  ".where(field => field(\"${1:field}\")${2})"
+		],
+		"description": "Jexia Where conditions"
+	  },
+	"Jexia Filters": {
+		"prefix": ".jx_filter",
+		"body": [
+		  ".${2|isEqualTo(100),isGreaterThan(57),isLessThan(100),isEqualOrGreaterThan(15),isEqualOrLessThan(7),isLike(\"Moby dick\"),isNull(),isNotNull(),isDifferentFrom(\"test\"),isBetween(1,30),isInArray(my_val),isNotInArray(my_val),satisfiesRegexp('a-z0-9')|}"
+		],
+		"description": "Jexia filter options for Where conditions"
+	  },
+	"Jexia Fields": {
+		"prefix": ".jx_output",
+		"body": [
+		  ".fields(\"id\", \"title\")"
+		],
+		"description": "Get some specific fields from Jexia"
+	  },
+	"Jexia Sort": {
+		"prefix": ".jx_sort",
+		"body": [
+		  ".sortAsc(\"${1:field}\",\"${2:field}\")"
+		],
+		"description": "Sort based on some specific fields from Jexia"
+	},  
+	"Jexia Limit": {
+		"prefix": ".jx_limit",
+		"body": [
+		  ".limit(${1})",
+		  ".offset(${2})"
+		],
+		"description": "Apply backend limits and offset"
+	}, 
+	"Jexia Relations": {
+		"prefix": ".jx_related",
+		"body": [
+		  ".related(\"${1:ds_name}\", ${2:var} => ${2:var}.fields(\"${3:field1}\",\"${4:field2}\"))",
+		],
+		"description": "Get data from releted Sets"
+	}, 	
+	"Jexia AND / OR": {
+		"prefix": ".jx_and_or",
+		"body": [
+		  ".${1|and(),or()|}"
+		],
+		"description": "Apply AND & OR for filters"
+	},
+	"Jexia FileSet": {
+		"prefix": ".jx_jfs",
+		"body": [
+		  ".fileset(\"${1:FileSetName}\").${2|upload,select,insert,update,delete|}()",
+		  "\t$3",
+		  "\t.pipe(",
+		  "\t\t// any RxJS method.",
+		  "\t\t//switchMap(records => archive.insert(records)), ",
+		  "\t)",	
+		  "\t.subscribe(records => {", 
+		  "\t\t// you will always get an array of created records, including their generated IDs (even when inserting a single record) ",
+		  "\t},", 
+		  "\terror => {", 
+		  "\t\t// you can see the error info here, if something goes wrong ",
+	      "\t});"
+		],
+		"description": "Jexia FileSet CRUD"
+	  },
+	  "JFS record": {
+		"prefix": ".jx_jfs_record",
+		"body": [
+			"const records = [{",
+			"\tdata: {",
+			"\t\tdescription: \"just a file\"",
+			"\t},",
+			"\tfile: fs.createReadStream(\"../assets/logo.png\")",
+			"}];"
+		],
+		"description": "Jexia FileSet CRUD"
+	  },
+	  "UMS signIn": {
+		"prefix": ".jx_ums_signin",
+		"body": [
+			"const user = await ums.signIn({",    
+			"\temail   : '${1:user_email}',",
+			"\tpassword: '${2:secret-password}',",    
+			"\tdefault: true",
+			"});",
+			"${4:resource}.dataset('${5:ds_name}')",
+			".select()"  
+		],
+		"description": "Jexia userSet SignIn"
+	  },
+	  "UMS signUp": {
+		"prefix": ".jx_ums_signup",
+		"body": [
+			"const user = await ums.signUp({",    
+			"\temail      : '${1:user_email}',",
+			"\tpassword   : '${2:secret-password}',",    
+			"\t${3:some-fields}: ${4:secret-password}",    
+			"});"
+		],
+		"description": "Jexia userSet SignUp"
+	  },
+	  "UMS change password": {
+		"prefix": ".jx_ums_change_psw",
+		"body": [
+			"ums.changePassword('${1:email}', \"${2:old_psw}\", \"${3:new_psw}\"); "
+		],
+		"description": "Jexia userSet ChangePassword"
+	  },
+	  "UMS delete user": {
+		"prefix": ".jx_ums_delete",
+		"body": [
+			"ums.deleteUser('${1:email}', \"${2:password}\",);"
+		],
+		"description": "Jexia userSet ChangePassword"
+	  },
+	  "Jexia channel": {
+		"prefix": ".jx_pubsub",
+		"body": [
+			"const channel = rtm.channel(\"${1:channel_name}\");",
+			"channel.publish(\"${2:message}\");",
+			"channel.subscribe(message => {});"
+		],
+		"description": "Jexia userSet ChangePassword"
+	  }
+}
