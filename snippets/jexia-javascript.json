@@ -125,7 +125,7 @@
 			"\tfile: fs.createReadStream(\"../assets/logo.png\")",
 			"}];"
 		],
-		"description": "Jexia FileSet CRUD"
+		"description": "Jexia FileSet record example"
 	  },
 	  "UMS signIn": {
 		"prefix": ".jx_ums_signin",
@@ -163,7 +163,7 @@
 		"body": [
 			"ums.deleteUser('${1:email}', \"${2:password}\",);"
 		],
-		"description": "Jexia userSet ChangePassword"
+		"description": "Jexia userSet delete current user"
 	  },
 	  "Jexia channel": {
 		"prefix": ".jx_pubsub",
@@ -172,6 +172,6 @@
 			"channel.publish(\"${2:message}\");",
 			"channel.subscribe(message => {});"
 		],
-		"description": "Jexia userSet ChangePassword"
+		"description": "Jexia PUB/SUB"
 	  }
 }
